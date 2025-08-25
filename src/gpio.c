@@ -28,6 +28,7 @@ SPDX-License-Identifier: MIT
 
 #include <string.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include "gpio.h"
 
 /* === Macros definitions ====================================================================== */
@@ -73,7 +74,7 @@ static gpio_t allocateInstance() {
     gpio_t result = NULL;
     for (int index = 0; index < GPIO_MAX_INSTANCES; index++) {
         if (!instances[index].used) {
-            result = &instances[index].used;
+            result = &instances[index];
             result->used = true;
             break;
         }
